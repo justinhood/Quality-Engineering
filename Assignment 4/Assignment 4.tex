@@ -1,0 +1,38 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=2cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm,graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\today}
+\chead{Quality Engineering Assignment 4}
+\rhead{Justin Hood}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+\begin{enumerate}
+\item Consider an accounting firm that uses sampling methods in its client auditing process. Similar accounts are grouped together into batches of $25$. Given that a random sample of size $n=5$ is the largest practical sample, and that there is one erroneous account, we compute the probability that our sample contains the erroneous account as follows. We note that the probability of a sample containing the bad account follows the binomial distribution, with $p=1/25$, $n=5$. The probability is then,
+\[P(X\geq 1)=1-P(X=0)=1-\frac{n!}{x!(N-x)!}p^x(1-p)^{n-x}=1-\frac{5!}{0!(5-0)!}(0.04)^0(0.96)^{5-0}\approx 0.1846273\]
+\item Let there now be $2$ erroneous accounts in the batch. Thus, $p$ is now $p=2/25$. We then compute the probability that a sample of size five has at least one erroneous account as,
+\[P(X\geq 1)=1-P(X=0)=1-\frac{5!}{0!(5-0)!}(0.08)^0(0.92)^{5-0}=0.34091848\]
+\item We now consider how many erroneous accounts are necessary to have a probability of $0.5$ to have the erroneous account. Thus, we must find the number of erroneous accounts to set $P(X=0)=.5$, as the probability of at least one is the numeric inverse of the probability of zero. Thus, we solve,
+\begin{align*}
+0.5&=\frac{5!}{0!(5-0)!}(p)^0(1-p)^{5-0}\\
+&=(1-p)^5\\
+\sqrt[5]{0.5} &= (1-p)\\
+p&= 1-\sqrt[5]{.5}
+&\approx 0.1294494
+\end{align*}
+So, in a sample of $25$ possible accounts, 
+\[\frac{x}{25}=0.1294494 \Rightarrow 3.236235918\]
+Thus, we must round up to $4$ to have the probability of at least $.5$. To have only $3$ is not quite enough.
+\item For a hospital with approximately 250 new patients admitted a day, a random sample of 50 records is taken and checked for error. Historically $.05$ records have contained errors. We compute the probability that there is at least one incorrect record as,
+\[P(X\geq 1)=1-P(X=0)=1-\frac{50!}{0!(50-0)!}(0.05)^0(1-.05)^{50}\approx 0.9230550247\]
+\item 
+\end{enumerate}
+\end{document}
