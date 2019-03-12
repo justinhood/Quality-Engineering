@@ -1,0 +1,133 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=2cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm,graphicx, enumitem}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\today}
+\chead{Quality Engineering Exam 1}
+\rhead{Justin Hood}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+\begin{enumerate}
+\item we consider the data provided for company XYZ in their process. We wish to see whether the product PSI can be predicted or affected by the temperature or the speed of the process. To begin, we use MS Excel to compute the linear regression based on the model,
+\[Y=a+\beta_1 x_1+\beta_2 x_2\]
+\[PSI=Intercept+\beta_1 Temp+\beta_2 Speed\]
+This model assumes both variables are relevant. Using Excel, we perform the following tests,
+\begin{align*}
+Test\ 1 & \\
+H_0: & Model\ Not\ Significant\\
+H_A: & Model\ Significant\\
+F\ Statistic &= 41.90937279\\
+p-val &= 2.14731\times 10^{-6} 
+\end{align*}
+Because $p<\alpha=0.05$, we reject the null hypothesis in favor of the alternative. Next,
+\begin{align*}
+Test\ 2 & \\
+H_0: & Model\ Not\ Significant\\
+H_A: & Model\ Significant\\
+R^2 &= 0.86573
+\end{align*}
+Because $R^2>0.80$, we again reject the null in favor of the alternative. Next,
+\begin{align*}
+Test\ 3 & \\
+H_0: & \beta_1=0\\
+H_A: & \beta_1\neq 0\\
+t-statistic &= 9.153530962\\
+p-val &= 4.97011\times 10^{-7} 
+\end{align*}
+Because $p<\alpha$, we reject our null hupothesis, and conclude that $\beta_1$ is significant to the model. Finally,
+\begin{align*}
+Test\ 4 & \\
+H_0: & \beta_2=0\\
+H_A: & \beta_2\neq 0\\
+t-statistic &= 0.900469649\\
+p-val &= 0.384248447 
+\end{align*}
+Because $p>\alpha$, we fail to reject our null hypothesis, and thus, conclude that $\beta_2$ is insignificant to the model.\\
+Because we have concluded that Speed has no influence on the outcome of the model, we consider now the model,
+\[Y=a+\beta_1 x_1\]
+\[PSI=Intercept+\beta_1 Temp\]
+The same tests are performed in the Excel document, and the findings are the same as above, the model is significant, and $\beta_1$ is significant. Our model is then,
+\[PSI=150.24+(0.76397)Temp\]
+Given that optimizing our PSI involves the highest possible value, and that the coefficient and intercept of our model are greater than zero, we know that we want the highest possible temperature. Given the bound on temp is 102, we find that the optimal value of PSI is,
+\[PSI=150.24+(0.76397)(102)=228.16494\]
+So, the ideal setting of temperature is 102, and the ideal setting for speed is whatever minimizes cost of the overall process. Presumably this is the highest speed possible, but without knowing the process we may not say for sure.
+\item We consider the two different tire formula compositions. Based on the data, we have the wear in thousandths of inches. To compare the data, we consider the following hypotheses,
+\begin{align*}
+H_0:\ & \mu_1 <= \mu_2\\
+H_A:\ & \mu_1 > \mu_2 
+\end{align*}
+Here, we note that having a higher value for wear is a higher quality product. Using Excel, we first compute the following test,
+\begin{align*}
+H_0:\ & \sigma_1^2 = \sigma_2^2\\
+H_A:\ & \sigma_1^2 \neq \sigma_2^2
+\end{align*}
+This is an F-test with statistic,
+\[F_{29,29}=1.09352\]
+Our $p$-value is then, $0.4057>\alpha$. So we fail to reject the null hypothesis. So, we may proceed with a $t$ test assuming equal variances. Using Excel, we compute the following test statistic, $t^*=-7.15843$ for our one sided $t$ test. The corresponding $p$ value is then, $p=7.94\times 10^{-10}<\alpha$. So, we reject the null hypothesis in favor of the alternative, that $\mu_1 > \mu_2$. So, we conclude in agreement with the design engineer's assessment, that formula 1 is better, based on the test.
+\item We consider the testing procedure outlined in problem 3.
+\begin{enumerate}
+\item A given sample is, $<102.2, 100.5, 96.3, 95.6>$. Now, we perform a $t$-test on the data under the hypothesis,
+\begin{align*}
+H_0:\ & \mu = 96\\
+H_A:\ & \mu\neq 96
+\end{align*}
+We perform the hypothesis test,
+\[t^*_{0.025,3}=\frac{\mu-96}{\sigma/\sqrt{n}}=\frac{98.65-96}{3.20676368/\sqrt{4}}=1.65275665\]
+The corresponding $p$-value is then, $2(0.098475166)=0.196950332$ for our two tailed test. Because $p>\alpha$, we fail to reject the null hypothesis, that the mean is centered at $96$. We further consider the 95\% confidence interval on the sample to be,
+\[C.I.=(93.547323,\ 103.752677)\]
+We see that indeed $96$ is contained in the interval, further backing our conclusions.
+\item Now, we assume that the process follows a normal distribution with mean 98, and $\sigma=0.3$; i.e $$\sim N(98,0.3^2)$$ Our process will fault if our sample average is over 100. So, we compute,
+\begin{align*}
+P(\bar{X}>100) &= P(Z>\frac{100-98}{0.3/\sqrt{4}})\\
+&=P(Z>13.33333)\\
+&=1-P(Z\leq 13.33333)\\
+&\approx 0
+\end{align*}
+So, the probability that the process will be stopped in the first two samples is,
+\[P(First\ Stop)+P(First\ Pass,\ Second\ Stop)=\underbrace{P(Z>13.33333)}_{P(\bar{X}>100)}+\underbrace{(1-P(Z>13.33333))}_{P(\bar{X}\leq 100)}\underbrace{(P(Z>13.33333))}_{P(\bar{X}>100)}\approx 0\]
+Based on such a small value of $\sigma$, we see that the probability of the process producing a sample of 4 with mean larger than 100 is essentially zero. Thus, the process failure in the first two sampling sets is also essentially zero.
+\end{enumerate}
+\item We consider a process for producing silicon chips that averages $2.7\%$ defective items. A customer will reject a shipment of 10000 chips if a sample of 300 contains more than 8 defects.
+\begin{enumerate}
+\item We consider the probability of a 10000 piece shipment will be rejected by the customer. First, we compute,
+\[\sigma=\sqrt{npq}=\sqrt{300(0.027)(1-0.027)}=2.8073653\]
+Then,
+\[E(x)=2.7\%(300)=8.1\]
+Then,
+\[P(Z\leq \frac{8-E(x)}{\sigma}=\frac{8-8.1}{2.8073653}=-0.035621)=0.4857923871\]
+So, based on our process with a failure rate of 2.7\%, we see that the probability of rejection is approximately $48.58\%$.
+\item Now, we consider that the company wishes to make sure that more than 90\% of their shipment will be accepted by their customer. We compute the number of parts in an ideal sample as,
+\[P(accept)=0.9\Rightarrow Z^*=1.281551567\]
+Here, we have our critical value of $Z$. Then, we compute the relevant $Z$ score equation as,
+\begin{align*}
+1.281551567 &= \frac{n(.03)-1-n(.027)}{\sqrt{n(.027)(.973}} &&\text{Square and Solve the quadratic}\\
+n &= 5440.697749 \to 5441
+\end{align*}
+So, for our company to acheive a 90\% sample acceptance rate, the customer must sample around 5441 parts per shipment to see that the sample is indeed less than 3\% failure that is standard for industry. Hence, we see that it is not possible to decrease the sample size from 300 to meet this acceptance rate. 
+\end{enumerate} 
+\item Considering the table in the assignment, we compute the following values,
+\begin{enumerate}[label=\alph*.]
+\item $\mu=10$
+\item $\mu=10$
+\item $\mu+\frac{\sigma}{4}=10.25$
+\item $\mu+\frac{\sigma}{4}=10.25$
+\item $\mu-\frac{3\sigma}{2}=8.5$
+\item $\mu-\sigma=9$
+\item $\mu+\frac{\sigma}{2}=10.5$
+\item $\mu-\frac{5\sigma}{2}=7.5$
+\item $\mu+\frac{3\sigma}{2}=11.5$
+\item $\mu-3\sigma=7$
+\item $\mu+3\sigma=13$
+\end{enumerate}
+These values are computed based on the 
+\item See companion Excel document under tab ``Problem 6"
+\end{enumerate}
+\end{document}
