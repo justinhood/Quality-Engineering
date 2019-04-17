@@ -1,0 +1,65 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=2cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm,graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\today}
+\chead{Quality Engineering Assignment 11}
+\rhead{Justin Hood}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+\begin{enumerate}
+\item We consider the stress test turnaround time. To compute $C_p$, we first consider whether the process is normally distributed and under control. Without the data, or appropriate plots, we cannot say for sure, but we will assume normality and control to continue the calculation. We know that our target limits are, $(30,\ 36)$, $n=9$, and $\bar{s}=1$. We compute,
+\begin{align*}
+\hat{\sigma} &= \frac{\bar{s}}{c_4}\\
+&=\frac{1}{0.9693}\\
+&=1.03167
+\end{align*}
+Then,
+\begin{align*}
+C_p &= \frac{USL-LSL}{6\hat{\sigma}}\\
+&=\frac{36-30}{6(1.03167)}\\
+&=\frac{6}{6(1.03167)}\\
+&=0.9693\\
+&\to 0.97
+\end{align*}
+We see that the process is not technically capable, but is very close.
+\item We now consider the chocolate data. To compute $C_p$, we first consider whether the process is normally distributed and under control. Without the data, or appropriate plots, we cannot say for sure, but we will assume normality and control to continue the calculation. We know that our target limits are, $(23,\ 29)$, $n=4$, and that $\bar{R}=2$. Then, we compute,
+\begin{align*}
+\hat{\sigma} &= \frac{\bar{R}}{d_2}\\
+&=\frac{2}{2.059}\\
+&=0.971345
+\end{align*}
+Then,
+\begin{align*}
+C_p &= \frac{USL-LSL}{6\hat{\sigma}}\\
+&=\frac{29-23}{6(0.971345)}\\
+&=\frac{6}{6(1.03167)}\\
+&=1.0295\\
+&\to 1.03
+\end{align*}
+We see that the process is capable in this case.
+\item Finally, we consider the strut data. To compute $C_p$, we first consider whether the process is normally distributed and under control. Without the data, or appropriate plots, we cannot say for sure, but we will assume normality and control to continue the calculation. We know that our target limits are, $(70,\ 90)$, $n=4$, and $\bar{R}=1.66$. Then, we compute,
+\begin{align*}
+\hat{\sigma} &= \frac{\bar{R}}{d_2}\\
+&=\frac{1.66}{2.059}\\
+&=0.80622
+\end{align*}
+Then,
+\begin{align*}
+C_p &= \frac{USL-LSL}{6\hat{\sigma}}\\
+&=\frac{90-70}{6(0.80622)}\\
+&=\frac{20}{6(0.80622)}\\
+&=4.13454\\
+&\to 4.14
+\end{align*}
+We see that the process is capable.
+\end{enumerate}
+\end{document}
