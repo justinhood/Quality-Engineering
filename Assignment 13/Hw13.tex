@@ -1,0 +1,84 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[top=2cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm,graphicx}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lhead{\today}
+\chead{Quality Engineering Assignment 13}
+\rhead{Justin Hood}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newtheorem{lem}{Lemma}
+
+\begin{document}
+\begin{description}
+\item[1.]\hfill\\
+Calculations are performed in the attached Excel spreadsheet, but a summary of results follows,
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Case & A & B & C \\\hline
+Number of Sample Groups & 20 & 20 & 20 \\\hline
+Number of Samples per group (n) & 5 & 5 & 5\\\hline
+Center of X bar chart & 10 & 9.74 & 9.74 \\\hline
+Cetner of s chart & 0.6 & 0.6 & 0.6 \\\hline
+Target & 10 & 10 & 10 \\\hline
+USL & 11 & 11 & 11 \\\hline
+LSL & 9 & 9 & 9\\\hline
+\cellcolor{yellow!25}$C_p$ & \cellcolor{yellow!25}0.5222 & \cellcolor{yellow!25}0.5222 & \cellcolor{yellow!25}0.78333\\\hline
+\cellcolor{yellow!25}$C_{pk}$ & \cellcolor{yellow!25}0.5222 & \cellcolor{yellow!25}0.386444 & \cellcolor{yellow!25}0.579667\\\hline
+\cellcolor{yellow!25}$P(Defect)$ & \cellcolor{yellow!25}0.11719 & \cellcolor{yellow!25}0.147351 & \cellcolor{yellow!25}0.042551\\\hline
+\cellcolor{yellow!25}DPMO & \cellcolor{yellow!25}117192.6 & \cellcolor{yellow!25}147351.0 & \cellcolor{yellow!25}42550.6\\\hline
+\end{tabular}
+\end{center}
+\item[2.]\hfill \\
+Calculations are performed in the attached Excel spreadsheet, but a summary of results follows,
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Case & A & B & C & D \\\hline
+$C_p$ & 1 & 1.5 & 2 & \cellcolor{yellow!25}1\\\hline
+$C_{pk}$ & 1 & 1.5 & 2 & \cellcolor{yellow!25}1\\\hline
+Process Center & 0 & 0 & 0 & a\\\hline
+Sigma & 1 & 1 & 1 & 4\\\hline
+Target & 0 & 0 & 0 & a\\\hline
+LSL & -3 & -4.5 & -6 & a-12\\\hline
+USL & 3 & 4.5 & 6 & a+12\\\hline
+\cellcolor{yellow!25}P(Defect) & \cellcolor{yellow!25}0.0026998 & \cellcolor{yellow!25}6.79535E-06 & \cellcolor{yellow!25}1.97318E-09 & \cellcolor{yellow!25}0.0026998\\\hline
+\cellcolor{yellow!25}DPMO & \cellcolor{yellow!25}2699.8 & \cellcolor{yellow!25}6.8 & \cellcolor{yellow!25}$0.002\to 0$ & \cellcolor{yellow!25}2699.8\\\hline
+\end{tabular}
+\end{center}
+\item[3A.]\hfill\\
+We are given that $C_p=1.6$ and $C_{pk}=1.6$. We shall assume normality and statistical control for to solve. To begin, we note that $C_p=C_{pk}$ as such, we note that the process is centered. We shall also assume a standard normal model, $\sim N(0,1)$. Because the process is centered, we see that the target is equal to the process center. We then consider the following,
+\[C_p=\frac{USL-LSL}{6\hat{\sigma}}\Rightarrow USL-LSL=C_p6\hat{\sigma}\Rightarrow USL-LSL=1.6(6)\Rightarrow USL-LSL=9.6\]
+Because the process is centered, we may then compute,
+\begin{align*}
+LSL&=0-\frac{9.6}{2}\\
+&=-4.8\\
+USL&=0+\frac{9.6}{2}\\
+&=4.8
+\end{align*}
+Finally, we compute,
+\[P(Defect)=\Phi(Z<-4.8)+(1-\Phi(Z>4.8))=1.586656E-06\]
+Then,
+\[DPMO=1000000P(Defect)=1.58870534\to 1.6\]
+\item[3B.]\hfill\\
+e are given that $C_p=1.5$ and $C_{pk}=1$. We shall assume normality and statistical control for to solve. To begin, we note that $C_p\neq C_{pk}$ as such, we note that the process is not centered. We shall also assume a standard normal model, $\sim N(0,1)$. We now consider the following,
+\[C_p=\frac{USL-LSL}{6\hat{\sigma}}\Rightarrow USL-LSL=C_p6\hat{\sigma}\Rightarrow USL-LSL=1.5(6)\Rightarrow USL-LSL=9\]
+We now also consider,
+\[C_{pk}=\frac{\min(USL-\bar{\bar{x}},\bar{\bar{x}}-LSL)}{3\hat{\sigma}}\Rightarrow \min(USL-\bar{\bar{x}},\bar{\bar{x}}-LSL)=3\]
+without loss of generality, due to the symmetry of the normal distribution, we shall assume that,
+\[USL-\bar{\bar{x}}=3\Rightarrow USL=3\]
+Then,
+\[3-LSL=9\Rightarrow LSL=-6\]
+Finally, we compute,
+\[P(Defect)=\Phi(Z<-6)+(1-\Phi(Z>3))=1.349899E-03\]
+and,
+\[DPMO=1000000P(Defect)=1349.9\]
+\end{description}
+\end{document}
